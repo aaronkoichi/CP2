@@ -5,3 +5,7 @@ from django.http import HttpResponse
 def index(request):
 	return HttpResponse("AML Portal.");
 
+
+def main_page(request):
+
+    return render(request, "main.html")

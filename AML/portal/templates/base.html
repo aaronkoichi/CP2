@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI-AML Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+	<style>
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f5f7fa;
+  color: #333;
+}
+
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  background: #112d4e;
+  color: white;
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.sidebar .logo {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav li {
+  margin-bottom: 1rem;
+}
+
+.sidebar nav a {
+  color: white;
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.sidebar nav a:hover {
+  opacity: 1;
+}
+
+/* Main section */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e88e5;
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+.navbar input {
+  width: 40%;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.nav-buttons .btn {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+}
+
+.btn-primary {
+  background: #1976d2;
+  border: none;
+}
+
+.content {
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.cards-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  flex: 1;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card.wide {
+  flex: 2;
+}
+
+.green { color: #4caf50; }
+.red { color: #f44336; }
+
+.alerts-list {
+  list-style: none;
+  padding: 0;
+}
+.alerts-list li {
+  margin-bottom: 0.5rem;
+}
+.alerts-list .high { color: #f44336; }
+.alerts-list .medium { color: #ff9800; }
+.alerts-list .low { color: #2196f3; }
+
+.btn {
+  cursor: pointer;
+}
+
+.gauge-circle {
+  width: 140px;
+  margin: 0 auto;
+}
+
+.bottom .card {
+  text-align: center;
+}
+
+	</style>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2 class="logo">AI-AML<br>Dashboard</h2>
+      <nav>
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Analytics</a></li>
+          <li><a href="#">Alerts</a></li>
+          <li><a href="#">Transaction Monitoring</a></li>
+          <li><a href="#">Customer Risk</a></li>
+          <li><a href="#">Reports</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <!-- Top navbar -->
+      <header class="navbar">
+        <input type="text" placeholder="Search transactions, alerts, or cases...">
+        <div class="nav-buttons">
+          <button class="btn">Reports</button>
+          <button class="btn btn-primary">New Alert</button>
+          <div class="user-info">
+            <span>Guy</span>
+            <small>Risk Analyst</small>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content block -->
+      <section class="content">
+        {% block content %}{% endblock %}
+      </section>
+    </main>
+  </div>
+  <script>
+
+// Transactions line chart
+new Chart(document.getElementById('transactionsChart'), {
+  type: 'line',
+  data: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+    datasets: [{
+      data: [2000, 2400, 2200, 2600, 2847],
+      borderColor: '#4caf50',
+      fill: false,
+      tension: 0.4
+    }]
+  },
+  options: { plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { display: false } } }
+});
+
+// Anomalies bar chart
+new Chart(document.getElementById('anomaliesChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+    datasets: [{ data: [45, 40, 42, 38, 37], backgroundColor: '#f44336' }]
+  },
+  options: { plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { display: false } } }
+});
+
+// Risk distribution pie chart
+new Chart(document.getElementById('riskChart'), {
+  type: 'pie',
+  data: {
+    labels: ['Low', 'Medium', 'High'],
+    datasets: [{ data: [68, 24, 8], backgroundColor: ['#4caf50', '#ff9800', '#f44336'] }]
+  },
+  options: { plugins: { legend: { position: 'bottom' } } }
+});
+
+
+		</script>
+</body>
+</html>

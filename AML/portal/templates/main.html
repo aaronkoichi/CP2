@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}AI-AML Dashboard{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+  <h1>Welcome back, Guy</h1>
+  <p>Here’s your AML monitoring overview for today</p>
+  <button class="btn btn-small">Refresh Data</button>
+</div>
+
+<div class="cards-row">
+  <div class="card">
+    <h3>Transactions Processed</h3>
+    <h1>12,847</h1>
+    <p class="green">▲ 4.2% from yesterday</p>
+    <canvas id="transactionsChart" height="60"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>Anomalies Detected</h3>
+    <h1>37</h1>
+    <p class="red">▼ 12.1% from yesterday</p>
+    <canvas id="anomaliesChart" height="60"></canvas>
+  </div>
+
+  <div class="card gauge">
+    <h3>Threat Level</h3>
+    <div class="gauge-circle">
+      <canvas id="riskMeter"></canvas>
+    </div>
+    <p><strong>Current Status:</strong> HIGH</p>
+    <p class="small">Last updated: Today at 10:45 AM</p>
+  </div>
+</div>
+
+<div class="cards-row">
+  <div class="card wide">
+    <h3>Recent Alerts</h3>
+    <ul class="alerts-list">
+      <li class="high">High-risk transaction detected – $45,000 to offshore account <span>10:23 AM</span></li>
+      <li class="medium">Unusual pattern detected – multiple small transactions <span>9:47 AM</span></li>
+      <li class="medium">Potential structuring activity – multiple small deposits <span>Yesterday</span></li>
+      <li class="low">New high-risk customer onboarded <span>Yesterday</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Risk Distribution</h3>
+    <canvas id="riskChart" height="160"></canvas>
+  </div>
+</div>
+
+<div class="cards-row bottom">
+  <div class="card action">
+    <h3>Transaction Overview</h3>
+    <p>Monitor and analyze all financial transactions across your organization.</p>
+    <button class="btn">View Transactions</button>
+  </div>
+
+  <div class="card action">
+    <h3>Anomaly Detection</h3>
+    <p>Review AI-detected anomalies and take appropriate action.</p>
+    <button class="btn">View Anomalies</button>
+  </div>
+
+  <div class="card action">
+    <h3>Analytics & Reports</h3>
+    <p>Generate comprehensive reports and analyze AML trends.</p>
+    <button class="btn">View Reports</button>
+  </div>
+</div>
+
+{% endblock %}
